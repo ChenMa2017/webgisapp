@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+  <table cellpadding="0" cellspacing="0" id="myTable">
+      <tr>
+          <th>车型</th>
+          <th>数量</th>
+          <th>操作</th>
+      </tr>
+      <tr>
+          <td><input type="text"  value=""  maxlength="255" placeholder="" title="车型" style="width:98%;"/></td>
+          <td><input type="text"   value=""  maxlength="255" placeholder="" title="数量" style="width:98%;"/></td>
+          <td><input type="hidden" id="reC" value="1" />
+              <a class="btn btn-mini btn-info" onclick="addRows();">增加行</a>
+              <a class="btn btn-mini btn-danger" onclick="saveTableValue();">表格数据</a>
+          </td>
+      </tr>
+  </table>
+
+  <form action="">
+    <!--input type="button" value="RUN DSM!"-->
+    <button type="button" onclick="myLocation()">location</button>
+  </form>
+  
+  <script>
+  function addRows() {
+      //记录总共添加几行
+      document.getElementById("reC").value = parseInt(document.getElementById("reC").value) + 1;//获取中的行数
+
+      //添加一行
+      var i = parseInt(myTable.rows.length);
+
+      var newTr = myTable.insertRow();
+      //添加列
+      var newTd0 = newTr.insertCell();
+      var newTd1 = newTr.insertCell();
+      var newTd2 = newTr.insertCell();
+      //设置列内容和属性
+
+      newTd0.innerHTML = '<input type="text" id="dpDate' + i + '_dpDate' + i + '" style="width:98%;" title="车型" value="" />';
+      newTd1.innerHTML = '<input type="text" id="txtR' + i + '_1" style="width:98%;" title="数量"  value=""/>';
+
+      newTd2.innerHTML = '<input type="submit" class="btn btn-mini btn-warning"  value="删除该行" onclick="deleRow()" id="btnDele' + i + '" />';
+//            saveTableValue();//保存值
+      return false;
+  }
+
+  //删除一行
+  function deleRow() {
+      //获得行索引
+      //两个parentElement分别是TD和TR，rowIndex是TR的属性
+      var cGetRow = window.event.srcElement.parentElement.parentElement.rowIndex;
+      alert("点击了第"+cGetRow);
+      myTable.deleteRow(cGetRow);
+
+//            saveTableValue();//保存值
+      return false;
+  }
+
+  //保存表格中最新的值
+  function saveTableValue() {
+
+      var myTable = document.getElementById("myTable");
+//            alert("表格总行数="+ parseInt(myTable.rows.length));
+
+      tableValue="";
+      for (var i=1;i<myTable.rows.length;i++){
+          var value1 = myTable.rows[i].cells[0].getElementsByTagName("input")[0].value;//车辆类型
+          var value2 = myTable.rows[i].cells[1].getElementsByTagName("input")[0].value;//派车数量
+          var rowValue=value1+"_"+value2; //"_"来连接
+          tableValue=tableValue+rowValue+"+";
+      }
+
+      alert("表格内拼接的值"+tableValue);
+
+      $("#USECATTYPENUM").val(tableValue);//把表格的值付给input
+  }
+  </script>
+
+</body>
+</html>

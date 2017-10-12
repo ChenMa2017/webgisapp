@@ -1,0 +1,152 @@
+<! DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 初试网站</title>
+<style>
+body
+{
+	background-color:#d0e4fe;
+}
+h1
+{
+	position:absolute;
+	left:700px;
+	top:20px;
+	color:orange;
+}
+h2
+{
+	color:orange;
+	text-align:center;
+}
+p1
+{
+	font-family:"Times New Roman";
+	font-size:20px;
+	position:absolute;
+	left:700px;
+	top: 90px;
+}
+p2
+{
+	font-family:"Times New Roman";
+	font-size:10px;
+	position:absolute;
+	left:730px;
+	top:120px;
+}
+fieldset.loc
+ {
+    padding:10px;
+    margin:10px;
+    width:240px;
+    color:#333;
+    border:#06c dashed 1px;
+}
+fieldset.fuc
+ {
+    padding:10px;
+    margin:10px;
+    width:160px;
+    color:#333;
+    border:#06c dashed 1px;
+}
+</style>
+
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false">
+</script>
+
+<script>
+function initialize()
+{
+var mapProp = {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script>
+function displayDate(){
+	document.getElementById("myTime").innerHTML=Date();
+}
+setInterval("displayDate()",1000);
+</script>
+
+<script>
+function myLocation() {
+    // 声明变量
+    var inputLong, inputLati;
+		inputLong= document.getElementById("myLong").value;
+    inputLati= document.getElementById("myLati").value;
+}
+</script>
+
+</head>
+
+<body>
+	 <div id="content" style="background-color:#d0e4fe;width:1000px;height:150px;float:top;">
+		 <img src="D:/webapp/soilmap/images/logo.png" alt="DSM logo" width="560" height="150" />
+		 <h1>DSM: Digital Soil Mapping </h1>
+		 <p1>This web is disigned for web using of DSM.</p1>
+		 <p2 id="myTime"></p2>
+	 </div>
+
+	 <div id="googleMap" style="width:560px;height:380px;float:left;">
+	 </div>
+	 <div id="content" style="background-color:#EEEEEE;width:560px;height:380px;float:left;">
+		 <form action="">
+			 <fieldset class="loc">
+				 <legend>Location:</legend>
+				 longitude: <input type="text" id="myLong" size="30"><br>
+				 Latitude : <input type="text" id="myLati" size="30">
+				 <form action="">
+					 <!--input type="button" value="RUN DSM!"-->
+					 <button type="button" onclick="myLocation()">location</button>
+				 </form>
+			 </fieldset>  <!--"<br>": line break-->
+		 </form>
+		 <form action="">
+			 <fieldset class="fuc" style="float:left;">
+				 <legend>Terrain Attribute:</legend>
+				 <input type="checkbox" name="terrain attribute" value="first"> Attribute A<br>
+				 <input type="checkbox" name="terrain attribute" value="second">Attribute B
+				 <!--注意：用户可以选择多个选项。-->
+			 </fieldset>
+		 </form>
+		 <form action="">
+			 <fieldset class="fuc" style="float:left;">
+				 <legend>Function:</legend>
+				 <input type="radio" name="function" value="first"> Function A<br>
+				 <input type="radio" name="function" value="second">Function B
+				 <!--注意：当用户点击一个单选按钮时，它就会被选中，其他同名的单选按钮就不会被选中。-->
+			 </fieldset>
+		 </form>
+		 <form action="">
+			 <select name="Algorithm">
+				 <option value="A">Both</option>
+				 <option value="B">Only A</option>
+				 <option value="C">Only B</option>
+				 <option value="D">Null</option>
+			 </select>
+		 </form>
+	 </div>
+
+	 <!--div id="content" style="background-color:#EEEEEE;height:380px;width:200px;float:left;"-->
+	 </div>
+
+	 <script>
+	 document.write("Hello World!")<br>
+   </script>
+
+   <a href="http://www.runoob.com/" target="_blank">go to tutorial!</a>
+   <!--如果你将 target 属性设置为 &quot;_blank&quot;, 链接将在新窗口打开-->
+
+
+</body>
+</html>
