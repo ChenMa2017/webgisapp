@@ -12,7 +12,7 @@ h1
 {
 	position:absolute;
 	left:700px;
-	top:20px;
+	top:10px;
 	color:orange;
 }
 h2
@@ -26,7 +26,7 @@ p1
 	font-size:20px;
 	position:absolute;
 	left:700px;
-	top: 90px;
+	top: 70px;
 }
 p2
 {
@@ -34,43 +34,76 @@ p2
 	font-size:10px;
 	position:absolute;
 	left:730px;
-	top:120px;
+	top: 100px;
 }
 fieldset.loc
  {
     padding:10px;
     margin:10px;
-    width:240px;
+    width:250px;
+		height:140px;
     color:#333;
     border:#06c dashed 1px;
+		position:absolute;
+		left:600px;
+		top:135px;
 }
-fieldset.fuc
+fieldset.fuca
  {
     padding:10px;
     margin:10px;
-    width:160px;
+    width:120px;
+		height:60px;
     color:#333;
     border:#06c dashed 1px;
+		position:absolute;
+		left:880px;
+		top:135px;
+}
+fieldset.fucb
+ {
+    padding:10px;
+    margin:10px;
+    width:120px;
+		height:60px;
+    color:#333;
+    border:#06c dashed 1px;
+		position:absolute;
+		left:880px;
+		top:215px;
+}
+fieldset.fucc
+ {
+    padding:10px;
+    margin:10px;
+    width:60px;
+		height:60px;
+    color:#333;
+    border:#06c dashed 1px;
+		position:absolute;
+		left:1040px;
+		top:135px;
+}
+fieldset.table
+ {
+    padding:10px;
+    margin:10px;
+    width:400px;
+		height:300px;
+    color:#333;
+    border:#06c dashed 1px;
+		position:absolute;
+		left:600px;
+		top:300px;
 }
 </style>
 
-<script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzE9xAESye6Kde-3hT-6B90nfwUkcS8Yw&sensor=false">
-</script>
-
-<script>
-function initialize()
-{
-var mapProp = {
-  center:new google.maps.LatLng(51.508742,-0.120850),
-  zoom:5,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-
+<link rel="stylesheet" href="https://openlayers.org/en/v4.4.1/css/ol.css" type="text/css">
+<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+<script src="./dependence/jquery-3.2.1.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+<script src="https://openlayers.org/en/v4.4.1/build/ol.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
 function displayDate(){
 	document.getElementById("myTime").innerHTML=Date();
@@ -78,74 +111,302 @@ function displayDate(){
 setInterval("displayDate()",1000);
 </script>
 
-<script>
-function myLocation() {
-    // 声明变量
-    var inputLong, inputLati;
-		inputLong= document.getElementById("myLong").value;
-    inputLati= document.getElementById("myLati").value;
-}
-</script>
-
 </head>
 
 <body>
-	 <div id="content" style="background-color:#d0e4fe;width:1000px;height:150px;float:top;">
-		 <img src="D:/webapp/soilmap/images/logo.png" alt="DSM logo" width="560" height="150" />
-		 <h1>DSM: Digital Soil Mapping </h1>
-		 <p1>This web is disigned for web using of DSM.</p1>
-		 <p2 id="myTime"></p2>
-	 </div>
+	<div id="content" style="background-color:#d0e4fe;width:1100px;height:120px;float:top;">
+		<img src="./images/logo.png" alt="DSM logo" width="600" height="120" />
+		<h1>DSM: Digital Soil Mapping </h1>
+		<p1>This web is disigned for web using of DSM.</p1>
+		<p2 id="myTime"></p2>
+	</div>
 
-	 <div id="googleMap" style="width:560px;height:380px;float:left;">
-	 </div>
-	 <div id="content" style="background-color:#EEEEEE;width:560px;height:380px;float:left;">
-		 <form action="">
-			 <fieldset class="loc">
-				 <legend>Location:</legend>
-				 longitude: <input type="text" id="myLong" size="30"><br>
-				 Latitude : <input type="text" id="myLati" size="30">
-				 <form action="">
-					 <!--input type="button" value="RUN DSM!"-->
-					 <button type="button" onclick="myLocation()">location</button>
-				 </form>
-			 </fieldset>  <!--"<br>": line break-->
-		 </form>
-		 <form action="">
-			 <fieldset class="fuc" style="float:left;">
-				 <legend>Terrain Attribute:</legend>
-				 <input type="checkbox" name="terrain attribute" value="first"> Attribute A<br>
-				 <input type="checkbox" name="terrain attribute" value="second">Attribute B
-				 <!--注意：用户可以选择多个选项。-->
-			 </fieldset>
-		 </form>
-		 <form action="">
-			 <fieldset class="fuc" style="float:left;">
-				 <legend>Function:</legend>
-				 <input type="radio" name="function" value="first"> Function A<br>
-				 <input type="radio" name="function" value="second">Function B
-				 <!--注意：当用户点击一个单选按钮时，它就会被选中，其他同名的单选按钮就不会被选中。-->
-			 </fieldset>
-		 </form>
-		 <form action="">
-			 <select name="Algorithm">
-				 <option value="A">Both</option>
-				 <option value="B">Only A</option>
-				 <option value="C">Only B</option>
-				 <option value="D">Null</option>
-			 </select>
-		 </form>
-	 </div>
+	<div id="map" class="map" style="width:600px;height:600px;float:left;"></div>
+	<div id="content" style="background-color:#EEEEEE;width:580px;height:580px;float:left;">
+		<form class="form-inline">
+			<label>Geometry type &nbsp;</label>
+			<select id="type">
+				<option value="None">None</option>
+				<option value="Polygon">Polygon</option>
+				<!--option value="Point">Point</option-->
+        <!--option value="LineString">LineString</option-->
+				<!--option value="Circle">Circle</option-->
+			</select>
+			<div id="mouseposition" style="float:right;"></div>
+		</form>
+		<form action="">
+			<fieldset class="loc">
+				<legend>Location:</legend>
+				longitude: <input type="text" id="myLong" size="30"><br>
+				Latitude : <input type="text" id="myLati" size="30">
+				<form action="">
+					<!--input type="button" value="RUN DSM!"-->
+					<button type="button" onclick="moveTomyLocation()">move center</button>
+					<button type="button" onClick="zoomIn()">zoom in</button>
+          <button type="button" onClick="zoomOut()">zoom out</button>
+					<button type="button" onClick="removeFeature()">clear draw</button>
+				</form>
+			</fieldset>  <!--"<br>": line break-->
+		</form>
+		<form action="">
+			<fieldset class="fuca">
+				<legend>Terrain Attribute:</legend>
+				<input type="checkbox" name="terrain attribute" value="first"> Attribute A<br>
+				<input type="checkbox" name="terrain attribute" value="second">Attribute B
+				<!--注意：用户可以选择多个选项。-->
+			</fieldset>
+		</form>
+		<form action="">
+			<fieldset class="fucb">
+				<legend>Function:</legend>
+				<input type="radio" name="function" value="first"> Function A<br>
+				<input type="radio" name="function" value="second">Function B
+				<!--注意：当用户点击一个单选按钮时，它就会被选中，其他同名的单选按钮就不会被选中。-->
+			</fieldset>
+		</form>
+		<form action="">
+			<fieldset class="fucc">
+			<legend>Alogrithm:</legend>
+			<select name="Algorithm">
+				<option value="A">Both</option>
+				<option value="B">Only A</option>
+				<option value="C">Only B</option>
+				<option value="D">Null</option>
+			</select>
+			<form action="">
+				<button type="button" onClick="showTransmit()">RUN</button>
+			<form>
+			</fieldset>
+		</form>
+		<form action="">
+			<fieldset class="table">
+				<legend>Vertex Coordinate:</legend>
+				<table id="myTable" cellpadding="0" cellspacing="0" style="width: 100%;text-align: center;float:left"><!--border:1px solid lightgreen-->
+					<col style="width: 5%" />
+          <col style="width: 35%" />
+					<col style="width: 35%" />
+					<col style="width: 25%" />
+					<tr>
+						<td >NO.</td>
+						<td >longitude</td>
+						<td >latitude</td>
+						<td >operation</td>
+					</tr>
+				</table>
+				<!--注意：用户可以选择多个选项。-->
+			</fieldset>
+		</form>
+	</div>
 
-	 <!--div id="content" style="background-color:#EEEEEE;height:380px;width:200px;float:left;"-->
-	 </div>
+	<!--a onclick="showHint()" target="_blank">go to tutorial!</a-->
+	<button type="button" onClick="showHint()">go to tutorial!</button>
+	<p>提示信息: <span id="testAjax"></span></p>
+	<!--如果你将 target 属性设置为 &quot;_blank&quot;, 链接将在新窗口打开-->
 
-	 <script>
-	 document.write("Hello World!")<br>
-   </script>
+	<script>
+		// const $=require("jquery");
+	function showHint()
+	{
+		var result = $.ajax({
+			method:"GET",
+			url:"http://127.0.0.1:8081/hello",
+			success:function(response){
+				console.log(response);
+			}
+		});
+	}
 
-   <a href="http://www.runoob.com/" target="_blank">go to tutorial!</a>
-   <!--如果你将 target 属性设置为 &quot;_blank&quot;, 链接将在新窗口打开-->
+	function showTransmit()
+	{
+		var vertex = saveTableValue();
+		$.ajax({
+			method: "GET",
+			dataType: "json",
+			data: {param1: 'EPSG:3857', param2: 0.2},
+			url:"http://127.0.0.1:8081/algorithm",
+			success:function(response){
+				console.log(response);
+			}
+		})
+		.done(function( msg ) {
+			alert(msg);//var result = msg; // msg 'ok'
+	  });
+
+	}
+
+	function wrapLon(value) {
+		var worlds = Math.floor((value + 180) / 360);
+		return value - (worlds * 360);
+	}
+
+	function addRows(evt) {
+		//记录总共添加几行
+		// document.getElementById("myTable").value = parseInt(document.getElementById("myTable").value);//获取中的行数
+		//添加一行
+		var i = parseInt(myTable.rows.length);
+		var newTr = myTable.insertRow();
+		//添加列
+		var newTd0 = newTr.insertCell();
+		var newTd1 = newTr.insertCell();
+		var newTd2 = newTr.insertCell();
+		var newTd3 = newTr.insertCell();
+		//设置列内容和属性
+		var projection= view.getProjection().getCode();
+    var lonlat = ol.proj.transform(evt.coordinate, projection, 'EPSG:4326');
+		lonlat[0]=wrapLon(lonlat[0]);
+		newTd0.innerHTML= '<input type="text" title="NO." size="3" value='+i+' />';
+		newTd1.innerHTML= '<input type="text" title="longitude" size="18" value='+lonlat[0]+' />';
+		newTd2.innerHTML= '<input type="text" title="latitude" size="18" value='+lonlat[1]+' />';
+		newTd3.innerHTML = '<input type="button" title="operation" size="15" value=" delete row  " onclick="deleRow(this)">';
+    return false;
+	}
+
+	//删除一行
+	function deleRow(inputObj) {
+		//获得行索引
+		//两个parentElement分别是TD和TR，rowIndex是TR的属性
+		var cGetRow = inputObj.parentElement.parentElement.rowIndex;
+		var rownumb =parseInt(cGetRow);
+		for (var i=rownumb+1;i<myTable.rows.length;i++){
+			myTable.rows[i].cells[0].getElementsByTagName("input")[0].value=i-1;
+		}
+		myTable.deleteRow(cGetRow);
+		return false;
+   }
+
+	 //保存表格中最新的值
+	 function saveTableValue() {
+		 //var myTable = document.getElementById("myTable");//  alert("表格总行数="+ parseInt(myTable.rows.length));
+		 var tableValue="";
+		 var vertex = new Array();
+		 for (var i=1;i<myTable.rows.length;i++){
+			 var value1 = myTable.rows[i].cells[1].getElementsByTagName("input")[0].value;
+			 var value2 = myTable.rows[i].cells[2].getElementsByTagName("input")[0].value;
+			 vertex[i*2]=value1;
+			 vertex[i*2+1]=value2;
+			 var rowValue=value1+"_"+value2; //"_"来连接
+			 tableValue=tableValue+rowValue+"+";
+		 }
+		 alert("tablevalue :"+tableValue);
+		// $("#USECATTYPENUM").val(tableValue);//把表格的值付给input
+		 return vertex;
+	 }
+
+
+	 var raster = new ol.layer.Tile({//visible: true,
+		                               preload: Infinity,
+																	 source: new ol.source.BingMaps({
+																   key: ' AugMp4_Gl5cbYNB6MmJcsaGVAKGHJGwlUGxQOJyNcrXR9kZk30_nLfDYFnkzrrgG',
+																	 imagerySet: 'AerialWithLabels'})
+																})
+	 var source = new ol.source.Vector({wrapX: false});
+	 var vector = new ol.layer.Vector({source: source});
+	 var view =new ol.View({
+			 center:ol.proj.transform([-10500000, 4000000], 'EPSG:3857','EPSG:3857'),// 'EPSG:4326'),
+			 zoom: 4,
+			 minZoom: 1,
+       maxZoom: 20,
+		   projection: 'EPSG:3857',
+			 extent: [-14000000, 2000000,
+				        -7000000, 6000000]
+					});
+	 var map = new ol.Map({
+		 loadTilesWhileInteracting: true,
+		 layers: [raster, vector],
+		 target: 'map',
+		 view: view});
+
+	var typeSelect = document.getElementById('type');
+	var draw; // global so we can remove it later
+	var featureID=0;
+
+	function addInteraction() {
+		   var value = typeSelect.value;
+			 if (value !== 'None') {
+				 draw = new ol.interaction.Draw({
+					 source: source,
+					 type: /** @type {ol.geom.GeometryType} */ (typeSelect.value)  });
+				// Create drawend event of feature and set ID to feature
+				draw.on('drawend', function (event) {
+					featureID = featureID + 1;
+					event.feature.setProperties({
+						'id': featureID})
+					})
+				 map.addInteraction(draw);
+			}
+	}
+	/*** Handle change event.*/
+	typeSelect.onchange = function() {
+		map.removeInteraction(draw);
+		addInteraction();
+	};
+
+  addInteraction();
+
+	function removeFeature() {
+		map.removeInteraction(draw);
+		typeSelect.value='None';
+		source.clear();
+		var rowNum=parseInt(myTable.rows.length);
+		for (var i=rowNum;i>0;i--){
+			myTable.deleteRow(i-1);
+		}
+	}
+	var mousePositionControl=new ol.control.MousePosition({
+		coordinateFormat:ol.coordinate.createStringXY(9),
+		projection:"EPSG:4326",
+		className:"custom-mouse-position",
+		target:document.getElementById("mouseposition"),//show mouse position on web
+		undefinedHTML:"&nbsp"
+	});
+  map.addControl(mousePositionControl);
+
+	//function display(id, value) {document.getElementById(id).value = value.toFixed(9);}
+
+	function onMapClick(evt) {
+		var value = typeSelect.value;
+		if (value == 'Polygon') {
+			addRows(evt);
+		}
+	}
+  map.on('click', onMapClick);
+
+	function moveTomyLocation() {
+		var inputLong, inputLati;
+		inputLong= document.getElementById("myLong").value;
+		inputLati= document.getElementById("myLati").value;
+		if (inputLong !== ''&&inputLati!== '') {
+			inputLong= parseFloat(inputLong);
+			inputLati= parseFloat(inputLati);
+			if (Math.abs(inputLong)<=180&&Math.abs(inputLati)<=90){
+				var view = map.getView();// 设置地图中心
+				//view.setCenter(ol.proj.transform([inputLong,inputLati], 'EPSG:4326', 'EPSG:4326'));
+				//view.setZoom(12);
+				view.animate({
+				 center: ol.proj.transform([inputLong,inputLati], 'EPSG:4326', 'EPSG:3857'),
+				 duration: 2000,
+				 zoom: 12
+			 });
+			  //view.setZoom(12);
+				map.render();
+			}
+			else{
+				alert('the coordinated: '+inputLong+' '+inputLati+'is wrong');
+			}
+		}
+		else{
+			alert('the coordinated: '+inputLong+' '+inputLati+'is NULL');
+		}
+	}
+	function zoomIn() {
+		var view = map.getView();// 让地图的zoom增加1，从而实现地图放大
+		view.setZoom(view.getZoom() + 1);
+	}
+	function zoomOut() {
+		var view = map.getView();// 让地图的zoom减小1，从而实现地图缩小
+		view.setZoom(view.getZoom() - 1);
+	}
+	</script>
 
 
 </body>
